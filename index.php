@@ -25,7 +25,6 @@ $result = $conn->query($sql); // THIS RUNS THE QUERY AND STORES THE RESULT
         <table class="table mt-3">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>Task</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -38,7 +37,6 @@ $result = $conn->query($sql); // THIS RUNS THE QUERY AND STORES THE RESULT
             <tbody> 
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
-                        <td><?php echo $row["id"]; ?></td>
                         <td><?php echo $row["task"]; ?></td>
                         <td>
                             <?php echo ($row["status"] == 1) ? "<span class='badge bg-success'>Completed</span>" : "<span class='badge bg-warning'>Pending</span>"; ?>
