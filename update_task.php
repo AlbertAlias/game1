@@ -1,16 +1,19 @@
 <?php
-include "dbconn.php"; // FOR DATABASE CONNECTION
+include "dbconn.php"; // Database connection
 
-if (isset($_GET["id"])) { // THIS CHECKS IF AN ID IS PROVIDED
-    $id = $_GET["id"]; // IT STORES THE TASK ID IN A VARIABLE
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST["id"]; // Get task ID
+    $task = $_POST["task"]; // Get updated task name
 
-    $sql = "UPDATE tasks SET status = 1 WHERE id = ?"; // SQL STATEMENT
-    $stmt = $conn->prepare($sql); // THIS PREPARES THE STATEMENT
-    $stmt->bind_param("i", $id); // THE "i" MEANS INTEGER
-    $stmt->execute(); // THIS EXECUTES THE STATEMENT
-    $stmt->close(); // THIS CLOSES THE STATEMENT
+    if (!empty($task)) {
+        $sql = "UPDATE tasks SET task = ? WHERE id = ?"; // SQL Update query
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("si", $task, $id); // "s" for string, "i" for integer
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    header("Location: index.php"); // Redirect to task list
+    exit();
 }
-
-header("Location: index.php"); // REDIRECT TO TASK LIST
-exit();
 ?>

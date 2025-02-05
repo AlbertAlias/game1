@@ -42,8 +42,9 @@ $result = $conn->query($sql); // THIS RUNS THE QUERY AND STORES THE RESULT
                             <?php echo ($row["status"] == 1) ? "<span class='badge bg-success'>Completed</span>" : "<span class='badge bg-warning'>Pending</span>"; ?>
                         </td>
                         <td>
-                            <a href="update_task.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-sm">Complete</a>
+                            <a href="update_taskStatus.php?id=<?php echo $row['id']; ?>" class="btn btn-success btn-sm">Complete</a>
                             <a href="delete_task.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Remove</a>
+                            <a href="edit_task.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
